@@ -1,0 +1,21 @@
+nav.header{
+    width: 1280;
+    height: 80px;
+    background-color: #1C2B35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 90px;
+    
+}
+.menu_item{
+    display: flex;
+    gap: 20px;
+}
+.menu_item a{
+    text-decoration: none;
+    color: aliceblue;
+}
+.menu_item a:hover{
+    color: orange;
+}
