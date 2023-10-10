@@ -16,9 +16,24 @@ const Shop = () => {
   }, []);
   // Load data from Local storage
   useEffect(() => {
-    const storedData = getShoppingCart();
-    console.log(storedData);
-  }, []);
+    const storedCart = getShoppingCart();
+    const savedCart = [];
+    // step 1: get id
+    for (const id in storedCart) {
+      // step 2: get the product by using id
+      const addedProduct = products.find((product) => product.id === id);
+      if (addedProduct) {
+        // step 3: add quantity
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        // step 4: add the added product to the saved cart
+        savedCart.push(addedProduct);
+        // console.log(addedProduct);
+      }
+    }
+    // step 5: set the cart
+    setCart(savedCart);
+  }, [products]);
 
   const handleAddToCard = (product) => {
     const newCart = [...cart, product];
