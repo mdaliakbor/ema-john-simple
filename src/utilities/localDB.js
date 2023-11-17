@@ -21,7 +21,7 @@ const getShoppingCart = () => {
   return shoppingCart;
 };
 
-const removeCartFromLDB = () => {
+const removeCartFromLDB = (id) => {
   const shoppingCart = getShoppingCart();
   if (id in shoppingCart) {
     delete shoppingCart[id];

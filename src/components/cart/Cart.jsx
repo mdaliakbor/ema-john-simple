@@ -23,8 +23,8 @@ const Cart = (props) => {
   const grandTotal = totalPrice + totalShipping + tax;
 
   return (
-    <div className="cart">
-      <h2>Order Summary</h2>
+    <div className="cart rounded-md text-xl leading-10">
+      <h2 className="text-2xl font-bold">Order Summary</h2>
       <p>Selected Items: {quantity}</p>
       <p>Total Price: $ {totalPrice}</p>
       <p>Total Shipping Charge: $ {totalShipping}</p>

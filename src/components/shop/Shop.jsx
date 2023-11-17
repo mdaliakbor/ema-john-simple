@@ -3,7 +3,6 @@ import "./Shop.css";
 import Product from "../product/Product";
 import Cart from "../cart/Cart";
 import { addToLocalDb, getShoppingCart } from "../../utilities/localDB";
-// import { addToDb } from "../../utilities/fakedb";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);

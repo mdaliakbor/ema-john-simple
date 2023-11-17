@@ -2,17 +2,26 @@
 import React from "react";
 import logo from "../../images/Logo.svg";
 import "./Header.css";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
+    <div className="main">
       <nav className="header">
         <img src={logo} alt="logo" />
         <div className="menu_item">
-          <a href="/order">Order</a>
-          <a href="/review">review</a>
-          <a href="/inventory">Inventory</a>
-          <a href="/login">Login</a>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "bg-gray-500 rounded-md px-2" : ""
+            }
+          >
+            Home
+          </NavLink>
+          <Link to="/shop">Shop</Link>
+          <Link to="/order">Order Review</Link>
+          <Link to="/inventory">Inventory</Link>
+          <Link to="/login">Login</Link>
         </div>
       </nav>
     </div>
