@@ -1,8 +1,7 @@
 import React from "react";
 import "./Cart.css";
 
-const Cart = (props) => {
-  const { cart } = props;
+const Cart = ({ cart, clearCartHandler, children }) => {
   //   console.log(props);
 
   // calculate total price
@@ -23,13 +22,23 @@ const Cart = (props) => {
   const grandTotal = totalPrice + totalShipping + tax;
 
   return (
-    <div className="cart rounded-md text-xl leading-10">
+    <div className="cart rounded-md text-xl leading-10 ">
       <h2 className="text-2xl font-bold">Order Summary</h2>
       <p>Selected Items: {quantity}</p>
       <p>Total Price: $ {totalPrice}</p>
       <p>Total Shipping Charge: $ {totalShipping}</p>
       <p>Tax: ${tax}</p>
       <h4>Grand Total: ${grandTotal}</h4>
+      <div className="mt-2 grid gap-4">
+        <button
+          onClick={clearCartHandler}
+          className="px-4 p-0.5 w-full mr-40 bg-red-600 text-white flex justify-between rounded-sm"
+        >
+          <span>Clear Cart</span>
+          <span>Del</span>
+        </button>
+        {children}
+      </div>
     </div>
   );
 };

@@ -1,14 +1,21 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
-import logo from "../../images/Logo.svg";
+import React, { useContext } from "react";
+
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+  }
   return (
     <div className="main">
       <nav className="header">
-        <img src={logo} alt="logo" />
+        {/* <img src={} alt="logo" /> */}
+        <div className="font-bold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 italic">Simple-Ecom</div>
         <div className="menu_item">
           <NavLink
             to="/"
@@ -19,9 +26,16 @@ const Header = () => {
             Home
           </NavLink>
           <Link to="/shop">Shop</Link>
-          <Link to="/order">Order Review</Link>
+          <Link to="/order">Order</Link>
           <Link to="/inventory">Inventory</Link>
-          <Link to="/login">Login</Link>
+          {
+            user ? <>
+              <button onClick={handleLogOut} className="text-white">Log out</button>
+            </> : <>
+              <Link to="/login">Sign in</Link>
+            </>
+          }
+          <Link to="/register">Sign Up</Link>
         </div>
       </nav>
     </div>

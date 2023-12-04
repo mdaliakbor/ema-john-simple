@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Shop.css";
 import Product from "../product/Product";
 import Cart from "../cart/Cart";
-import { addToLocalDb, getShoppingCart } from "../../utilities/localDB";
+import {
+  addToLocalDb,
+  deleteShoppingCartFromLDB,
+  getShoppingCart,
+} from "../../utilities/localDB";
+import { Link } from "react-router-dom";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -49,8 +54,14 @@ const Shop = () => {
 
     setCart(newCart);
     addToLocalDb(product.id);
-    // addToDb(product.id);
   };
+
+  // clear cart to db
+  const clearCartHandler = () => {
+    setCart([]);
+    deleteShoppingCartFromLDB();
+  };
+
   return (
     <div className="shop_container">
       <div className="products_container">
@@ -63,7 +74,14 @@ const Shop = () => {
         ))}
       </div>
       <div className="order_summary">
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart} clearCartHandler={clearCartHandler}>
+          <Link to="/review">
+            <button className="px-4 p-0.5 w-full mr-40 bg-yellow-600 text-white flex justify-between rounded-sm">
+              <span>Review Order</span>
+              <span>icon</span>
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );

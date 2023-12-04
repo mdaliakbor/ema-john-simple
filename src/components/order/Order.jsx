@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Cart from "../cart/Cart";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ReviewItem from "../reviewItem/ReviewItem";
-import { removeCartFromLDB } from "../../utilities/localDB";
+import {
+  deleteShoppingCartFromLDB,
+  removeCartFromLDB,
+} from "../../utilities/localDB";
 
 const Order = () => {
   const savedCart = useLoaderData();
@@ -13,6 +16,11 @@ const Order = () => {
     const remaining = cart.filter((product) => product.id !== id);
     setCart(remaining);
     removeCartFromLDB(id);
+  };
+
+  const clearCartHandler = () => {
+    setCart([]);
+    deleteShoppingCartFromLDB();
   };
 
   // console.log(cart);
@@ -28,7 +36,14 @@ const Order = () => {
         ))}
       </div>
       <div className="w-96">
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart} clearCartHandler={clearCartHandler}>
+          <Link to="/checkout">
+            <button className="px-4 p-0.5 w-full mr-40 bg-yellow-600 text-white flex justify-between rounded-sm">
+              <span>Proceed Checkout</span>
+              <span>icon</span>
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
